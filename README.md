@@ -26,7 +26,7 @@ The purpose of this repository is to recreate the results from Chad Giusti's [pa
 	- [] Add things like the Euler Characteristic if compatible with Gudhi
 - [] Place all of the graphing functions into a utilities folder.
 
-## Geometric Clique Complexes
+### Geometric Clique Complexes
 - [] Re-read Giusti's section on how he generated the *geometric* graphs.
 - [] Generate some sampled geometric graphs.
 - [] Create some artificial geometric graphs.
