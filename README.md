@@ -7,9 +7,9 @@ The purpose of this repository is to recreate the results from Chad Giusti's [pa
 
 ### Clique Complex Code
 - [x] Optimize the clique generation
-	I ended up writing a recursive function and it executes really fast. 20 vertices takes 1 second.
+	(I ended up writing a recursive function and it executes really fast. 20 vertices takes 1 second.
 	The default networkx algorithm took 66 seconds. 30 vertices took 15 seconds so I will probably
-	still have to look into some kind of parallelization if I want to get close to 88.
+	still have to look into some kind of parallelization if I want to get close to 88.)
 	- [x] Implement a method which only checks for cliques of up to 6 neighbors.
 	- [x] Look for other clique finders online.
 	- [x] If still too slow, look into maybe doing this in parallel.
