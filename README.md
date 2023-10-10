@@ -6,12 +6,15 @@ The purpose of this repository is to recreate the results from Chad Giusti's [pa
 ## TODO 
 
 ### Clique Complex Code
-- [] Optimize the clique generation
-	- [] Implement a method which only checks for cliques of up to 6 neighbors.
-	- [] Look for other clique finders online.
-	- [] If still too slow, look into maybe doing this in parallel.
-	- [] Look into generating all the cliques only once for the top filtration
-		-[] Pick out the cliques from the top filtration using current simplices.
+- [x] Optimize the clique generation
+	I ended up writing a recursive function and it executes really fast. 20 vertices takes 1 second.
+	The default networkx algorithm took 66 seconds. 30 vertices took 15 seconds so I will probably
+	still have to look into some kind of parallelization if I want to get close to 88.
+	- [x] Implement a method which only checks for cliques of up to 6 neighbors.
+	- [x] Look for other clique finders online.
+	- [x] If still too slow, look into maybe doing this in parallel.
+	- [x] Look into generating all the cliques only once for the top filtration
+		-[x] Pick out the cliques from the top filtration using current simplices.
 - [] Change `g_betti_curve` to generate take in the filtration after the persistence is computed.
 	- [] Put the persistence code into the graphing tool function.
 - [] Add a function to compute the integral of the betti curve.
