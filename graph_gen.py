@@ -39,4 +39,62 @@ def get_edge_filtration(off_diagonal):
     filtration.sort(key=lambda x: x[1])
     return filtration
 
+def find_cliques_recursive(G, nodes, d, start_node=None, curr_clique=None):
+    """
+    A recursive function to find cliques of size up to d.
+    """
+    if curr_clique is None:
+        curr_clique = []
+    if start_node is None:
+        cliques = []
+        for node in nodes:
+            cliques += find_cliques_recursive(G, nodes, d, node, [node])
+        return cliques
+    else:
+        cliques = [curr_clique]
+        if len(curr_clique) < d:
+            neighbors = list(set(G.neighbors(start_node)) & set(nodes))
+            for neighbor in neighbors:
+                if neighbor > start_node:  # Avoid duplicates
+                    cliques += find_cliques_recursive(G, nodes, d, neighbor, curr_clique + [neighbor])
+        return cliques
+
+def cliques_up_to_d(G, d):
+    """
+    Find all cliques in the graph of size up to d.
+
+    Parameters:
+    - G: the input graph.
+    - d: the maximum size of cliques to be returned.
+
+    Returns:
+    - A list of cliques (each clique is a list of nodes).
+    """
+    nodes = list(G.nodes())
+    cliques = find_cliques_recursive(G, nodes, d)
+    return [clique for clique in cliques if len(clique) <= d]
+
+def get_betti_curve(persistence, dimension):
+    betti_curve = []
+    filtered_tuples = [(start, end) for dim, (start, end) in persistence if dim == dimension]
+
+    if len(filtered_tuples) > 0:
+        # Determine the overall time span for the plot
+        min_start = min(start for start, _ in filtered_tuples)
+        max_end = max(end if type(end) != float else 1 for _, end in filtered_tuples)  # Convert "inf" to 1
+    
+        num_points = max(1000, 2*len(filtered_tuples))
+        # Create a range of x values for the plot
+        x = np.linspace(0, 1, num_points)
+        
+        # Initialize the curve as an array of zeros
+        curve = np.zeros_like(x)
+        
+        # Create step functions for each (start, end) range and sum them
+        for start, end in filtered_tuples:
+            curve += np.where((x >= start) & (x <= end), 1, 0)
+    else:
+        x, curve = [],[]
+    return x, curve
+
 

@@ -4,8 +4,10 @@ from visualize_tools import *
 from simplicial import *
 
 import math
+import gudhi
 from IPython.display import display, HTML
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 
 def generate_graph_filtration(edge_filtration):
@@ -79,3 +81,41 @@ def generate_betti_curve(complex_filtration):
             current_betti_numbers[2]=0
         betti_curve.append((complex[0],current_betti_numbers))
     return betti_curve
+
+def gudhi_filtration(filtration, N):
+    clique_filtration = []
+    
+    for n, graph in enumerate(filtration):
+        current_cliques = cliques_up_to_d(graph[1], 4)
+        current_clique_simplices = []
+        for clique in current_cliques:
+            if len(clique)>2 and len(clique)<5:
+                current_clique_simplices.append(clique)
+        clique_filtration.append((filtration[n], current_clique_simplices))
+
+    print("Cliques Computed")
+
+    st = gudhi.SimplexTree()
+    edges_used = []
+    cliques_used = []
+
+    print("Building Clique Complex")
+    
+    for alpha_n in tqdm(clique_filtration):
+        alpha = alpha_n[0][0]
+        edges = alpha_n[0][1].edges
+        
+        for edge in edges:
+            if list(edge) in edges_used:
+                pass
+            else:
+                st.insert(list(edge), filtration = alpha)
+                edges_used.append(list(edge))
+        cliques = alpha_n[1]
+        for clique in cliques:
+            if list(clique) in cliques_used:
+                pass
+            else:
+                st.insert(list(clique), filtration = alpha)
+                cliques_used.append(list(clique))
+    return st

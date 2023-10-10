@@ -16,8 +16,8 @@ The purpose of this repository is to recreate the results from Chad Giusti's [pa
 	- [x] Look into generating all the cliques only once for the top filtration
 		-[x] Pick out the cliques from the top filtration using current simplices.
 - [] Check if you can optimize the simplex tree construction.
-- [] Change `g_betti_curve` to generate take in the filtration after the persistence is computed.
-	- [] Put the persistence code into the graphing tool function.
+- [x] Change `g_betti_curve` to generate take in the filtration after the persistence is computed.
+	- [x] Put the persistence code into the graphing tool function.
 - [] Add a function to compute the integral of the betti curve.
 	- The betti curves are sums of step functions so this should be easy.
 - [x] Add the capability to display persistence diagrams
