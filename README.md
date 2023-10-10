@@ -7,19 +7,21 @@ The purpose of this repository is to recreate the results from Chad Giusti's [pa
 
 ### Clique Complex Code
 - [x] Optimize the clique generation
-	(I ended up writing a recursive function and it executes really fast. 20 vertices takes 1 second.
+	-I ended up writing a recursive function and it executes really fast. 20 vertices takes 1 second.
 	The default networkx algorithm took 66 seconds. 30 vertices took 15 seconds so I will probably
-	still have to look into some kind of parallelization if I want to get close to 88.)
+	still have to look into some kind of parallelization if I want to get close to 88.
 	- [x] Implement a method which only checks for cliques of up to 6 neighbors.
 	- [x] Look for other clique finders online.
 	- [x] If still too slow, look into maybe doing this in parallel.
 	- [x] Look into generating all the cliques only once for the top filtration
 		-[x] Pick out the cliques from the top filtration using current simplices.
+- [] Check if you can optimize the simplex tree construction.
 - [] Change `g_betti_curve` to generate take in the filtration after the persistence is computed.
 	- [] Put the persistence code into the graphing tool function.
 - [] Add a function to compute the integral of the betti curve.
 	- The betti curves are sums of step functions so this should be easy.
-- [] Add the capability to display persistence diagrams
+- [x] Add the capability to display persistence diagrams
+	- This was already in gudhi haha
 - [] Package up the new gudhi functions
 - [] Delete old simplices functions
 - [] Add an option to smooth out the betti curves
