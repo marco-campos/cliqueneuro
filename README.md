@@ -16,6 +16,8 @@ The purpose of this repository is to recreate the results from Chad Giusti's [pa
 	- [x] Look into generating all the cliques only once for the top filtration
 		-[x] Pick out the cliques from the top filtration using current simplices.
 - [] Check if you can optimize the simplex tree construction.
+	- [] Redo the filtration system so that you don't have to iterate through all of the edges every single time. The graph filtration should only include the edge information being added. As of now we are storing filtrating copies of the graphs which is inneficient. The simplex tree can handle this filtration later.
+	- [] Test if building a simplex tree for a graph is faster and then adjusting it later to turn it into a clique complex. It will be hard to verify if they are the same but we can check using smaller graphs.
 - [x] Change `g_betti_curve` to generate take in the filtration after the persistence is computed.
 	- [x] Put the persistence code into the graphing tool function.
 - [] Add a function to compute the integral of the betti curve.
